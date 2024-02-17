@@ -43,4 +43,4 @@ jobs:
             pip install -r requirements-dev.txt
         - name: Unit Test
           run: |
-            python3 -m unittest discover -p "test_*.py" -v
+            python3 -m unittest discover -p "*_test.py" -v
