@@ -12,8 +12,10 @@ from functions.network import channel_hopper, start_monitor_mode
 logging.basicConfig(level=logging.DEBUG)
 
 INTERFACE = "wlan1"
+data = None
 
-def PacketHandler(packet, data):
+def PacketHandler(packet):
+    global data
     if packet.addr2 == "de:ad:be:ef:de:ad":
         if packet.haslayer(Dot11Beacon):
             logging.info("Packet is Beacon")
