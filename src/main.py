@@ -11,6 +11,7 @@ from functions.network import channel_hopper, start_monitor_mode
 
 logging.basicConfig(level=logging.DEBUG)
 
+SNIFF_FILTER_STRING = "type mgt subtype beacon and ether src de:ad:be:ef:de:ad"
 SPLASH_IMAGE_PATH = "/home/ck/Pictures/logo.jpg"
 INTERFACE = "wlan1"
 data = None
@@ -46,6 +47,5 @@ epd.lut_GC()
 epd.Clear()
 display_image(SPLASH_IMAGE_PATH)
 
-filter_str = "type mgt subtype beacon and ether src de:ad:be:ef:de:ad"
-sniff(iface=INTERFACE, prn=PacketHandler, filter=filter_str, monitor=True)
+sniff(iface=INTERFACE, prn=PacketHandler, filter=SNIFF_FILTER_STRING, monitor=True)
 logging.info("Stopping")
