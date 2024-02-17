@@ -1,8 +1,8 @@
 import logging
 import psutil
 from PIL import Image, ImageDraw, ImageFont
-from src.epd.epd3in52 import EPD
-from src.functions.utils import rssi_to_human
+from epd.epd3in52 import EPD
+from functions.utils import rssi_to_human
 
 font24 = ImageFont.truetype("DejaVuSansMono", size=24)
 font18 = ImageFont.truetype("DejaVuSansMono", size=18)
@@ -100,7 +100,7 @@ def update_display(data, interface):
 
 def display_image(path):
     image = Image.new("1", (epd.height, epd.width), 0)
-    jpg = Image.open(path) #"/home/ck/Pictures/logo.jpg"
+    jpg = Image.open(path)
     jpg = jpg.resize((240, 240))
     jpg = jpg.convert("1")
     jpg = jpg.rotate(180)

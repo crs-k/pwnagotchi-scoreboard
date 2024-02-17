@@ -29,7 +29,7 @@
 
 import logging
 from multiprocessing.reduction import recv_handle
-from src.epd import epdconfig
+from epd import epdconfig
 
 # Display resolution
 EPD_WIDTH       = 240
@@ -223,10 +223,8 @@ class EPD:
         epdconfig.digital_write(self.cs_pin, 1)
         
     def ReadBusy(self):
-        logger.debug("e-Paper busy")
         while(epdconfig.digital_read(self.busy_pin) == 0):      #  0: busy, 1: idle
             epdconfig.delay_ms(5) 
-        logger.debug("e-Paper busy release")
 
     def lut(self) :
         self.send_command(0x20)        # vcom
@@ -352,21 +350,17 @@ class EPD:
         return 0
 
     def getbuffer(self, image):
-        # logger.debug("bufsiz = ",int(self.width/8) * self.height)
         buf = [0xFF] * (int(self.width/8) * self.height)
         image_monocolor = image.convert('1')
         imwidth, imheight = image_monocolor.size
         pixels = image_monocolor.load()
-        # logger.debug("imwidth = %d, imheight = %d",imwidth,imheight)
         if(imwidth == self.width and imheight == self.height):
-            logger.debug("Vertical")
             for y in range(imheight):
                 for x in range(imwidth):
                     # Set the bits for the column of pixels at the current position.
                     if pixels[x, y] == 0:
                         buf[int((x + y * self.width) / 8)] &= ~(0x80 >> (x % 8))
         elif(imwidth == self.height and imheight == self.width):
-            logger.debug("Horizontal")
             for y in range(imheight):
                 for x in range(imwidth):
                     newx = y

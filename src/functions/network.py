@@ -4,13 +4,15 @@ import logging
 
 
 def channel_hopper(interface, loop_count=float('inf')):
-    for _ in range(loop_count):
+    count = 0
+    while count != loop_count:
         for channel in range(1, 14):  # 2.4GHz channels
             subprocess.run(["sudo", "iwconfig", interface, "channel", str(channel)])
             time.sleep(0.5)
         for channel in range(36, 165, 4):  # 5GHz channels
             subprocess.run(["sudo", "iwconfig", interface, "channel", str(channel)])
             time.sleep(0.5)
+        count += 1
 
 
 def start_monitor_mode(interface):

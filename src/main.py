@@ -1,13 +1,13 @@
 #!/usr/bin/env python
-from data import handle_packet, load_data, save_data
-from display import update_display
+from functions.display import display_image, update_display
+from functions.data import handle_packet, load_data, save_data
 from epd.epd3in52 import EPD
 import threading
 import logging
 import sys
 from scapy.all import Dot11Beacon, sniff
 
-from network import channel_hopper, start_monitor_mode
+from functions.network import channel_hopper, start_monitor_mode
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -41,6 +41,7 @@ epd = EPD()
 epd.init()
 epd.lut_GC()
 epd.Clear()
+display_image("/home/ck/Pictures/logo.jpg")
 
 filter_str = "type mgt subtype beacon and ether src de:ad:be:ef:de:ad"
 sniff(iface=INTERFACE, prn=PacketHandler, filter=filter_str, monitor=True)
