@@ -24,5 +24,3 @@ The `PacketHandler` function processes the packet, saves the updated data, and u
 
 This project is licensed under the MIT License.
 ```
-
-Please replace "Project Title" and the project description with appropriate content. Also, make sure to add a `requirements.txt` file to your project if you haven't already. This file should list all the Python packages that your project depends on.
