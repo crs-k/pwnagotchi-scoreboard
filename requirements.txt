@@ -3,4 +3,4 @@ Pillow==9.0.1
 scapy==2.5.0
 spidev==3.6
 RPi.GPIO==0.7.1
-gpiozero==1.5.1
+gpiozero==2.0.1
