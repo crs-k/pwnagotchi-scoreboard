@@ -27,8 +27,8 @@ jobs:
       run: |
         ruff --output-format=github .
 
-  Test-Unit:
-    name: Test - Unit
+  Unit-Test:
+    name: Unit Test
     runs-on: ubuntu-latest
     steps:
         - name: Checkout
@@ -43,4 +43,4 @@ jobs:
             pip install -r requirements-dev.txt
         - name: Unit Test
           run: |
-            python3 -m unittest discover -p "*_test.py" -v
+            python3 -m unittest discover -v -s ./tests -p "*_test.py"

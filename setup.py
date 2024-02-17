@@ -1,5 +1,9 @@
 from setuptools import setup, find_packages
 
+# Read requirements.txt
+with open('requirements.txt') as f:
+    requirements = f.read().splitlines()
+
 setup(
     name="Scoreboard",
     version="0.1",
@@ -14,6 +18,6 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    install_requires=["psutil", "Pillow", "scapy"],
+    install_requires=requirements,  # Use requirements read from requirements.txt
     python_requires=">=3.6",
 )
