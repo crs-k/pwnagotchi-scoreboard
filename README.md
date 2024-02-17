@@ -1,4 +1,5 @@
 [![CI](https://github.com/crs-k/pwnagotchi-scoreboard/actions/workflows/ci.yml/badge.svg)](https://github.com/crs-k/pwnagotchi-scoreboard/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/crs-k/pwnagotchi-scoreboard/actions/workflows/codeql.yml/badge.svg)](https://github.com/crs-k/pwnagotchi-scoreboard/actions/workflows/codeql.yml)
 # Pwnagotchi Scoreboard
 
 Creates a scoreboard of Pwnagotchis in range of the WiFi interface running in monitor mode.
