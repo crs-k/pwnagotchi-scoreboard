@@ -9,16 +9,9 @@ This project is a Python script that listens for beacon frames from a specific M
 To run the script, use the following command:
 
 ```bash
+pip install -r requirements.txt
 python3 main.py
 ```
-
-## How it works
-
-The script starts by setting the wireless interface to monitor mode and loading any previously saved data. It then starts a thread to hop between wireless channels.
-
-The script uses the Scapy library to sniff for beacon frames from the specified MAC address. When a beacon frame is received, it's passed to the `PacketHandler` function.
-
-The `PacketHandler` function processes the packet, saves the updated data, and updates the display. If an error occurs while updating the display, it's logged and the script continues running. If a KeyboardInterrupt (Ctrl+C) is detected, the script cleans up and exits.
 
 ## License
 
