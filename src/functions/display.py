@@ -3,6 +3,8 @@ import psutil
 from PIL import Image, ImageDraw, ImageFont
 from epd.epd3in52 import EPD
 from functions.utils import rssi_to_human
+from datetime import datetime, timedelta
+
 
 font24 = ImageFont.truetype("DejaVuSansMono", size=24)
 font18 = ImageFont.truetype("DejaVuSansMono", size=18)
@@ -80,6 +82,25 @@ def update_display(data, interface):
     # Draw the data rows
     y = 70
     for key, value in sorted_data.items():
+        now = datetime.now()
+        timestamp_str = value.get("timestamp", now.strftime("%m/%d/%y @ %I:%M %p"))
+        last_time = datetime.strptime(timestamp_str, "%m/%d/%y @ %I:%M %p")
+        time_diff = now - last_time
+        # Round the time difference
+        if time_diff < timedelta(minutes=1):
+            time_diff_str = "0 s"
+        elif time_diff < timedelta(hours=1):
+            minutes = round(time_diff.total_seconds() / 60)
+            time_diff_str = f"{minutes} m"
+        elif time_diff < timedelta(days=1):
+            hours = round(time_diff.total_seconds() / 3600)
+            time_diff_str = f"{hours} h"
+        else:
+            days = round(time_diff.total_seconds() / 86400)
+            time_diff_str = f"{days} d"
+
+        value["last"] = time_diff_str
+        
         name_face = value["name"] if value["name"] else "?"
         rssi = int(value["rssi"]) if value["rssi"] is not None else None
         pwnd_run = value["pwnd_run"] if value["pwnd_run"] is not None else 0
