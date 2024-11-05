@@ -1,5 +1,5 @@
 psutil==6.1.0
-Pillow==10.4.0
+Pillow==11.0.0
 scapy==2.6.1
 spidev==3.6
 RPi.GPIO==0.7.1
