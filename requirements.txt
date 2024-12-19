@@ -1,4 +1,4 @@
-psutil==6.1.0
+psutil==6.1.1
 Pillow==10.4.0
 scapy==2.6.1
 spidev==3.6
